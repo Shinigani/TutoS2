@@ -1,5 +1,5 @@
 <nav class="navbar navbar-fixed-op navbar-default">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -15,8 +15,35 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#"><i class="fa fa-home"></i>  Acceuil</a>
+                    <a href=" {{ path('tuto_s2_general_homepage') }} "><i class="fa fa-home fa-2x"></i>  Acceuil</a>
                 </li>
+
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path('fos_user_security_login') }}"><i class="fa fa-key fa-2x "></i>  {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    </li>
+                    <li>
+                        <a href=" {{ path('fos_user_registration_register') }} "><i class="fa fa-floppy-o fa-2x "></i>  S'enregistrer ?</a>
+                    </li>
+                {% endif %}
+
+
+                {% for type, messages in app.session.flashBag.all %}
+                    {% for message in messages %}
+                        <div class="{{ type }}">
+                            {{ message|trans({}, 'FOSUserBundle') }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
             </ul>
 
         </div><!-- /.navbar-collapse -->

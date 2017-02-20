@@ -4,13 +4,14 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Acceuil{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initiale-scale-1.0">
-        <link rel="stylesheet" href="{{ 'bootstrap/dist/css/bootstrap.min.css' }}">
+        <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block nav %} {% include '::nav.html.twig' %}  {% endblock %}
+
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
         <script src="https://use.fontawesome.com/6c5e871b78.js"></script>
