@@ -20,11 +20,34 @@
 
 
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+
                     <li>
-                        <a href="{{ path('fos_user_security_logout') }}">
-                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                        </a>
+                        <div class="btn-group">
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li class="dropdown">
+                                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}{#Affichage de la personne CO#}
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            {#Déconnexion#}
+                                            <a href="{{ path('fos_user_security_logout') }}">
+                                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                            </a>
+                                        </li>
+                                        <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+                                        <li><a href="{{ path('fos_user_profile_edit') }}">Edition de profile</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+
+
+
+                        </div>
+
                     </li>
                 {% else %}
                     <li>

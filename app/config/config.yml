@@ -1,5 +1,6 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: assetics.yml }
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@TutoS2GeneralBundle/Resources/config/services.yml" }
